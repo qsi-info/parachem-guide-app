@@ -78,10 +78,16 @@
 			</form>
 
 			<hr/>
+			<div class="well">
+				<h3 style="color: red;">Total: {{ (total()).formatMoney(2) }}$</h3>
 
-			<h3 style="color: red;">Total: {{ (total()).formatMoney(2) }}$</h3>
+			</div>
 
 			<!-- <button class="btn btn-block btn-primary" ng-show="reports.length > 0"  type="button">Imprimer cette recherche</button> -->
+
+			<hr/>
+			<!-- <a ng-show="$root.theme == 'new'" ng-click="$root.changeTheme('old')">classic theme</a> -->
+			<!-- <a ng-show="$root.theme == 'old'" ng-click="$root.changeTheme('new')">modern theme</a> -->
 
 		</div>
 
@@ -105,7 +111,7 @@
 			</caption>
 			<thead>
 				<tr>
-					<th >
+					<th style="width: 12%;">
 						<a href="javascript:;"  ng-click="sortType = 'AccountingCode'; sortReverse = !sortReverse">
 							Code
 							<span ng-show="sortType == 'AccountingCode' && !sortReverse" class="fa fa-caret-down"></span>
@@ -119,14 +125,14 @@
 							<span ng-show="sortType == 'Project' && sortReverse" class="fa fa-caret-up"></span>
 						</a>
 					</th>
-					<th>
+					<th style="width: 6%;">
 						<a href="javascript:;"  ng-click="sortType = 'WorkOrder'; sortReverse = !sortReverse">
 							BT
 							<span ng-show="sortType == 'WorkOrder' && !sortReverse" class="fa fa-caret-down"></span>
 							<span ng-show="sortType == 'WorkOrder' && sortReverse" class="fa fa-caret-up"></span>
 						</a>
 					</th>
-					<th>
+					<th style="width: 6%;">
 						<a href="javascript:;"  ng-click="sortType = 'Requisition'; sortReverse = !sortReverse">
 							R/S
 							<span ng-show="sortType == 'Requisition' && !sortReverse" class="fa fa-caret-down"></span>
@@ -165,10 +171,10 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="r in reports | orderBy:sortType:sortReverse | filter:search" >
-					<td><a ng-click="params.AccountingCode = r.AccountingCode; searchRequest();"><span style="white-space: nowrap;">{{r.AccountingCode}}</span></a></td>
+					<td style="width: 12%;"><a ng-click="params.AccountingCode = r.AccountingCode; searchRequest();"><span style="white-space: nowrap;">{{r.AccountingCode}}</span></a></td>
 					<td><a ng-click="params.Project = r.Project; searchRequest();">{{r.Project}}</a></td>
-					<td><a ng-click="params.WorkOrder = r.WorkOrder; searchRequest();">{{r.WorkOrder}}</a></td>
-					<td><a ng-click="params.Requisition = r.Requisition; searchRequest();">{{r.Requisition}}</a></td>
+					<td style="width: 6%;"><a ng-click="params.WorkOrder = r.WorkOrder; searchRequest();">{{r.WorkOrder}}</a></td>
+					<td style="width: 6%;"><a ng-click="params.Requisition = r.Requisition; searchRequest();">{{r.Requisition}}</a></td>
 					<td><a ng-click="params.PurchaseOrder = r.PurchaseOrder; searchRequest();">{{r.PurchaseOrder}}</a></td>
 					<td style="font-size: 12px; width: 30%;">{{r.Description}}</td>
 					<td style="font-size: 12px;width: 14%;"><a ng-click="params.Company = r.Company; searchRequest();">{{r.Company}}</a></td>

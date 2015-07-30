@@ -30,6 +30,39 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 })
 
 
+// .run(function ($rootScope) {
+// 	$rootScope.theme = 'new';
+// 	var linkElem = document.createElement('link');
+// 	document.getElementsByTagName('head')[0].appendChild(linkElem);
+// 	linkElem.rel = 'stylesheet';
+// 	linkElem.type = 'text/css';
+// 	linkElem.href = 'styles/theme.css';
+
+
+// 	$rootScope.changeTheme = function (theme) {
+// 		if (theme === 'old') {
+// 			linkElem = document.createElement('link');
+// 			document.getElementsByTagName('head')[0].appendChild(linkElem);
+// 			linkElem.rel = 'stylesheet';
+// 			linkElem.type = 'text/css';
+// 			linkElem.href = 'styles/386-theme.css';
+// 			$rootScope.theme = 'old';
+
+// 		} 
+// 		if (theme === 'new') {
+// 			window.location.reload();
+// 			// linkElem = document.createElement('link');
+// 			// document.getElementsByTagName('head')[0].appendChild(linkElem);
+// 			// linkElem.rel = 'stylesheet';
+// 			// linkElem.type = 'text/css';
+// 			// linkElem.href = 'styles/theme.css';			
+// 			// $rootScope.theme = 'new';
+// 		}
+// 	}
+
+// })
+
+
 
 
 .controller('MainCtrl', function ($scope, GuideAPI) {
