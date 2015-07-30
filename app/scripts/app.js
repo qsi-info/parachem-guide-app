@@ -68,11 +68,10 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 		if (Object.keys($scope.params).length < 1) {
 			window.alert('Vous devez entrer au moins un paramètre de recherche');
 			$scope.resetParams();
-			// if (window.confirm('Êtes-vous certain de vouloir faire une requête sans paramètre de recherche')) {
-			// 	GuideAPI.all().success(function (reports) {
-			// 		$scope.reports = reports
-			// 	})
-			// }
+
+
+		} else if ($scope.params.Company && $scope.params.Company.length < 3) {
+			window.alert('Le nom de compagnie doit au moins avoir trois charactères');
 		} else {
 			GuideAPI.search($scope.params).success(function (reports) {
 				$scope.reports = reports
