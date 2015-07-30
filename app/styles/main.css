@@ -6,3 +6,35 @@ span.search-label {
 	font-size: 100% !important;
 	margin-right: 10px;
 }
+
+
+
+table {
+        width: 100%;
+    }
+
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+thead th {
+    height: 30px;
+
+}
+
+tbody {
+    height: 800px;
+    overflow-y: auto;
+}
+
+
+
+tbody td, thead th {
+    width: 8%;
+    float: left;
+}
