@@ -6,7 +6,10 @@
     "json3": "^3.3.0",
     "es5-shim": "^4.0.0",
     "angular-route": "1.2.28",
-    "angular-sharepoint": "qsi-info/angular-sharepoint"
+    "angular-sharepoint": "qsi-info/angular-sharepoint",
+    "bootstrap-css-only": "~3.3.4",
+    "angular-loading-bar": "~0.8.0",
+    "ngSticky": "~1.7.9"
   },
   "appPath": "app",
   "resolutions": {

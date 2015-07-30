@@ -1,0 +1,183 @@
+
+
+
+<div class="row">
+	<div class="col-md-3">
+		<div sticky="" sticky-class="custom-sticky-class" offset="1">
+			<form ng-submit="searchRequest()">
+
+			  <div class="form-group">
+
+			  	<div class="form-group">
+			  		<label>Code comptable</label>
+			  		<div class="input-group">
+			  		  <input type="text" class="form-control" placeholder="Entrez un numéro de code" ng-model="params.AccountingCode"/>
+			  		  <span class="input-group-btn">
+			  		  	<a class="btn btn-default" ng-click="params.AccountingCode = ''; searchRequest()" style="height: 30px"><i class="fa fa-times"></i></a>
+			  		  </span>
+			  		</div>
+			  	</div>
+
+			  	<div class="form-group">
+			  		<label>Projet</label>
+			  		<div class="input-group">
+			  			<input type="text" class="form-control" placeholder="Entrez un numéro de projet" ng-model="params.Project"/>
+			  		  <span class="input-group-btn">
+			  		  	<a class="btn btn-default" ng-click="params.Project = ''; searchRequest()" style="height: 30px"><i class="fa fa-times"></i></a>
+			  		  </span>
+			  		</div>
+			  	</div>
+
+			  	<div class="form-group">
+			  		<label>Bon de Travail (BT)</label>
+			  		<div class="input-group">
+			  			<input type="text" class="form-control" placeholder="Entrez un numéro de bon" ng-model="params.WorkOrder"/>
+			  		  <span class="input-group-btn">
+			  		  	<a class="btn btn-default" ng-click="params.WorkOrder = ''; searchRequest()" style="height: 30px"><i class="fa fa-times"></i></a>
+			  		  </span>
+			  		</div>
+			  	</div>
+
+			  	<div class="form-group">
+			  		<label>Réquisition (R/S)</label>
+			  		<div class="input-group">
+			  			<input type="text" class="form-control" placeholder="Entrez un numéro de réquisition" ng-model="params.Requisition"/>
+			  		  <span class="input-group-btn">
+			  		  	<a class="btn btn-default" ng-click="params.Requisition = ''; searchRequest()" style="height: 30px"><i class="fa fa-times"></i></a>
+			  		  </span>
+			  		</div>
+			  	</div>
+
+			  	<div class="form-group">
+			  		<label>PO (F)</label>
+			  		<div class="input-group">
+			  			<input type="text" class="form-control" placeholder="Entrez un numéro de PO" ng-model="params.PurchaseOrder"/>
+			  		  <span class="input-group-btn">
+			  		  	<a class="btn btn-default" ng-click="params.PurchaseOrder = ''; searchRequest()" style="height: 30px"><i class="fa fa-times"></i></a>
+			  		  </span>
+			  		</div>
+			  	</div>
+
+
+			  	<div class="form-group">
+			  		<label>Compagnie</label>
+			  		<div class="input-group">
+			  			<input type="text" class="form-control" placeholder="Entrez un nom de compagnie" ng-model="params.Company"/>
+			  		  <span class="input-group-btn">
+			  		  	<a class="btn btn-default" ng-click="params.Company = ''; searchRequest()" style="height: 30px"><i class="fa fa-times"></i></a>
+			  		  </span>
+			  		</div>
+			  	</div>
+
+			  	<button class="btn btn-block btn-success" type="submit">Rechercher</button>
+			  	<button class="btn btn-block btn-warning" ng-click="resetParams()" type="reset">Recommencer</button>
+			  
+
+
+			  </div>
+			</form>
+
+			<hr/>
+
+			<h3 style="color: red;">Total: {{ (total()).formatMoney(2) }}$</h3>
+
+			<!-- <button class="btn btn-block btn-primary" ng-show="reports.length > 0"  type="button">Imprimer cette recherche</button> -->
+
+		</div>
+
+	</div>
+
+
+	<div class="col-md-9">
+		<table class="table" >
+			<caption>
+
+
+
+				<span ng-show="searchParams.AccountingCode" class="search-label label label-default">Code: {{searchParams.AccountingCode}}</span>
+				<span ng-show="searchParams.Project" class="search-label label label-warning">Projet: {{searchParams.Project}}</span>
+				<span ng-show="searchParams.WorkOrder" class="search-label label label-success">BT: {{searchParams.WorkOrder}}</span>
+				<span ng-show="searchParams.Requisition" class="search-label label label-danger">R/S: {{searchParams.Requisition}}</span>
+				<span ng-show="searchParams.PurchaseOrder" class="search-label label label-info">F: {{searchParams.PurchaseOrder}}</span>
+				<span ng-show="searchParams.Company" class="search-label label label-primary">Company: {{searchParams.Company}}</span>
+			  <!-- <input type="text" class="form-control" autofocus placeholder="Effectuez un filtre sur votre recherce" ng-model="search"> -->
+				<!-- Nombre de résultats: <strong>{{reports.length}}</strong> -->
+			</caption>
+			<thead>
+				<tr>
+					<th>
+						<a href="javascript:;"  ng-click="sortType = 'AccountingCode'; sortReverse = !sortReverse">
+							Code
+							<span ng-show="sortType == 'AccountingCode' && !sortReverse" class="fa fa-caret-down"></span>
+							<span ng-show="sortType == 'AccountingCode' && sortReverse" class="fa fa-caret-up"></span>
+						</a>
+					</th>
+					<th>
+						<a href="javascript:;"  ng-click="sortType = 'Project'; sortReverse = !sortReverse">
+							Projet
+							<span ng-show="sortType == 'Project' && !sortReverse" class="fa fa-caret-down"></span>
+							<span ng-show="sortType == 'Project' && sortReverse" class="fa fa-caret-up"></span>
+						</a>
+					</th>
+					<th>
+						<a href="javascript:;"  ng-click="sortType = 'WorkOrder'; sortReverse = !sortReverse">
+							BT
+							<span ng-show="sortType == 'WorkOrder' && !sortReverse" class="fa fa-caret-down"></span>
+							<span ng-show="sortType == 'WorkOrder' && sortReverse" class="fa fa-caret-up"></span>
+						</a>
+					</th>
+					<th>
+						<a href="javascript:;"  ng-click="sortType = 'Requisition'; sortReverse = !sortReverse">
+							R/S
+							<span ng-show="sortType == 'Requisition' && !sortReverse" class="fa fa-caret-down"></span>
+							<span ng-show="sortType == 'Requisition' && sortReverse" class="fa fa-caret-up"></span>
+						</a>
+					</th>
+					<th>
+						<a href="javascript:;"  ng-click="sortType = 'PurchaseOrder'; sortReverse = !sortReverse">
+							F
+							<span ng-show="sortType == 'PurchaseOrder' && !sortReverse" class="fa fa-caret-down"></span>
+							<span ng-show="sortType == 'PurchaseOrder' && sortReverse" class="fa fa-caret-up"></span>
+						</a>
+					</th>
+					<th>
+						<a href="javascript:;"  ng-click="sortType = 'Description'; sortReverse = !sortReverse">
+							Description
+							<span ng-show="sortType == 'Description' && !sortReverse" class="fa fa-caret-down"></span>
+							<span ng-show="sortType == 'Description' && sortReverse" class="fa fa-caret-up"></span>
+						</a>
+					</th>
+					<th>
+						<a href="javascript:;" ng-click="sortType = 'Company'; sortReverse = !sortReverse">
+							Compagnie
+							<span ng-show="sortType == 'Company' && !sortReverse" class="fa fa-caret-down"></span>
+							<span ng-show="sortType == 'Company' && sortReverse" class="fa fa-caret-up"></span>
+						</a>
+					</th>
+					<th>
+						<a href="javascript:;" ng-click="sortType = 'Price'; sortReverse = !sortReverse">
+							Prix
+							<span ng-show="sortType == 'Price' && !sortReverse" class="fa fa-caret-down"></span>
+							<span ng-show="sortType == 'Price' && sortReverse" class="fa fa-caret-up"></span>
+						</a>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="r in reports | orderBy:sortType:sortReverse | filter:search" >
+					<td><a ng-click="params.AccountingCode = r.AccountingCode; searchRequest();"><span style="white-space: nowrap;">{{r.AccountingCode}}</span></a></td>
+					<td><a ng-click="params.Project = r.Project; searchRequest();">{{r.Project}}</a></td>
+					<td><a ng-click="params.WorkOrder = r.WorkOrder; searchRequest();">{{r.WorkOrder}}</a></td>
+					<td><a ng-click="params.Requisition = r.Requisition; searchRequest();">{{r.Requisition}}</a></td>
+					<td><a ng-click="params.PurchaseOrder = r.PurchaseOrder; searchRequest();">{{r.PurchaseOrder}}</a></td>
+					<td style="font-size: 12px;">{{r.Description}}</td>
+					<td style="font-size: 12px;"><a ng-click="params.Company = r.Company; searchRequest();">{{r.Company}}</a></td>
+					<td style="text-align: right;">{{ (r.Price).formatMoney(2) }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+</div>
+
