@@ -75,7 +75,11 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 		} else {
 			GuideAPI.search($scope.params).success(function (reports) {
 				$scope.reports = reports
-				$scope.searchParams = $scope.params;
+				for(var p in $scope.params) {
+					if ($scope.params.hasOwnProperty(p)) {
+						$scope.searchParams[p] = $scope.params[p];
+					}
+				}
 			})			
 		}
 	};
