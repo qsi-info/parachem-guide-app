@@ -24,7 +24,7 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 
 	.when('/', {
 		controller: 'MainCtrl',
-		templateUrl: 'views/main.html',
+		templateUrl: 'views/guide.html',
 	})
 
 })
