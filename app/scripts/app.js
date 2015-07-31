@@ -108,6 +108,7 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 		} else {
 			GuideAPI.search($scope.params).success(function (reports) {
 				$scope.reports = reports
+				$scope.searchParams = {};
 				for(var p in $scope.params) {
 					if ($scope.params.hasOwnProperty(p)) {
 						$scope.searchParams[p] = $scope.params[p];
@@ -120,7 +121,7 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 
 	$scope.resetParams = function () {
 		$scope.params = {};
-		$scope.searchParams = [];
+		$scope.searchParams = {};
 		$scope.reports = [];
 		$scope.sortType = '';
 	};
@@ -133,6 +134,11 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 		});
 		return total;
 	};
+
+	$scope.resetParam = function (param) {
+		$scope.params[param] = '';
+		$scope.searchRequest();
+	}
 
 })
 
