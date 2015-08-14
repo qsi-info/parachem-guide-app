@@ -65,12 +65,16 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 
 
 
-.controller('MainCtrl', function ($scope, GuideAPI) {
+.controller('MainCtrl', function ($scope, GuideAPI, $http) {
 
 	$scope.searchParams = [];
 	$scope.params = {};
 	$scope.reports = [];
 	$scope.sortType = '';
+	$scope.partTotal = 0;
+	$scope.workHourTotal = 0;
+	$scope.otherTotal = 0;
+	$scope.reqTotal = 0;
 
 	$scope.searchRequest = function () {
 		if ($scope.params.PurchaseOrder === '') {
@@ -99,7 +103,7 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 
 
 		if (Object.keys($scope.params).length < 1) {
-			window.alert('Vous devez entrer au moins un paramètre de recherche');
+			// window.alert('Vous devez entrer au moins un paramètre de recherche');
 			$scope.resetParams();
 
 
@@ -114,7 +118,23 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 						$scope.searchParams[p] = $scope.params[p];
 					}
 				}
-			})			
+			});
+
+
+			$http.post('http://parasrv12.parachem.ca:8002/part/calculate', $scope.params).success(function (r) {
+				$scope.partTotal = r.total;
+			})
+
+			$http.post('http://parasrv12.parachem.ca:8002/other/calculate', $scope.params).success(function (r) {
+				$scope.otherTotal = r.total;
+			})
+
+			$http.post('http://parasrv12.parachem.ca:8002/workhour/calculate', $scope.params).success(function (r) {
+				$scope.workHourTotal = r.total;
+			})
+
+
+
 		}
 	};
 
@@ -124,6 +144,10 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 		$scope.searchParams = {};
 		$scope.reports = [];
 		$scope.sortType = '';
+		$scope.reqTotal = 0;
+		$scope.workHourTotal = 0;
+		$scope.partTotal = 0;
+		$scope.otherTotal = 0;
 	};
 
 
@@ -132,6 +156,13 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 		$scope.reports.forEach(function (r) {
 			total += r.Price
 		});
+		$scope.reqTotal = total;
+		return total;
+	};
+
+	$scope.bigTotal = function () {
+		var total = 0;
+		total += $scope.reqTotal + $scope.workHourTotal + $scope.partTotal + $scope.otherTotal;
 		return total;
 	};
 
@@ -170,6 +201,7 @@ angular.module('AngularSharePointApp', ['ngSharePoint', 'ngRoute', 'angular-load
 		}
 		return $http.post(server + '/report/search', params);
 	};
+
 
 
 	return service;

@@ -76,13 +76,34 @@
 
 			  </div>
 			</form>
+				<table class="table">
+					<tr>
+						<td>Réquisitions</td>
+						<td style="text-align: right;">{{ (total()).formatMoney(2) }}$</td>
+					</tr>
+					<tr>
+						<td>Pièces magasin</td>
+						<td style="text-align: right;">{{ partTotal.formatMoney(2) }}$</td>
+					</tr>
+					<tr>
+						<td>Main d'oeuvre</td>
+						<td style="text-align: right;">{{ workHourTotal.formatMoney(2) }}$</td>
+					</tr>
+					<tr>
+						<td>Autres dépenses</td>
+						<td style="text-align: right;">{{ otherTotal.formatMoney(2) }}$</td>
+					</tr>
+					<tr>
+						<td><h4 style="color: red;">Total</h4></td>
+						<td style="text-align: right;color: red;"><h4>{{ (bigTotal()).formatMoney(2) }}$</h4></td>
+					</tr>
+				</table>
 
-			<hr/>
-				<h3 style="color: red;">Total: {{ (total()).formatMoney(2) }}$</h3>
+				<!-- <h3 style="color: red;">Total: <span class="pull-right;">{{ (bigTotal()).formatMoney(2) }}$</span></h3> -->
 
 			<!-- <button class="btn btn-block btn-primary" ng-show="reports.length > 0"  type="button">Imprimer cette recherche</button> -->
 
-			<hr/>
+			<!-- <hr/> -->
 			<!-- <a ng-show="$root.theme == 'new'" ng-click="$root.changeTheme('old')">classic theme</a> -->
 			<!-- <a ng-show="$root.theme == 'old'" ng-click="$root.changeTheme('new')">modern theme</a> -->
 
@@ -92,17 +113,17 @@
 
 
 	<div class="col-md-9">
-		<table class="table" >
+		<table class="table" id="searchTable">
 			<caption>
-
-
-
 				<span ng-show="searchParams.AccountingCode" class="search-label label label-default">Code: {{searchParams.AccountingCode}}</span>
 				<span ng-show="searchParams.Project" class="search-label label label-warning">Projet: {{searchParams.Project}}</span>
 				<span ng-show="searchParams.WorkOrder" class="search-label label label-success">BT: {{searchParams.WorkOrder}}</span>
 				<span ng-show="searchParams.Requisition" class="search-label label label-danger">R/S: {{searchParams.Requisition}}</span>
 				<span ng-show="searchParams.PurchaseOrder" class="search-label label label-info">F: {{searchParams.PurchaseOrder}}</span>
 				<span ng-show="searchParams.Company" class="search-label label label-primary">Company: {{searchParams.Company}}</span>
+				<br/>
+				<br/>
+				Liste des réquisitions
 			  <!-- <input type="text" class="form-control" autofocus placeholder="Effectuez un filtre sur votre recherce" ng-model="search"> -->
 				<!-- Nombre de résultats: <strong>{{reports.length}}</strong> -->
 			</caption>

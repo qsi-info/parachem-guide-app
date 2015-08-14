@@ -39,32 +39,34 @@ span.search-label {
 
 
 
-table {
-        width: 100%;
-    }
+#searchTable table {
+width: 100%;
+}
 
-thead, tbody, tr, td, th { display: block; }
+#searchTable thead, #searchTable tbody, #searchTable tr, #searchTable td, #searchTable th { 
+display: block; 
+}
 
-tr:after {
+#searchTable tr:after {
     content: ' ';
     display: block;
     visibility: hidden;
     clear: both;
 }
 
-thead th {
+#searchTable thead th {
     height: 30px;
 
 }
 
-tbody {
+#searchTable tbody {
     height: 800px;
     overflow-y: auto;
 }
 
 
 
-tbody td, thead th {
+#searchTable tbody td, #searchTable thead th {
     width: 8%;
     float: left;
 }
