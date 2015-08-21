@@ -1,0 +1,9 @@
+<div ng-controller="TagsCtrl">
+	<span ng-show="$root.tagsParams.AccountingCode" class="search-label label label-default">Code: {{$root.tagsParams.AccountingCode}}</span>
+	<span ng-show="$root.tagsParams.Project" class="search-label label label-warning">Projet: {{$root.tagsParams.Project}}</span>
+	<span ng-show="$root.tagsParams.WorkOrder" class="search-label label label-success">BT: {{$root.tagsParams.WorkOrder}}</span>
+	<span ng-show="$root.tagsParams.Requisition" class="search-label label label-danger">R/S: {{$root.tagsParams.Requisition}}</span>
+	<span ng-show="$root.tagsParams.PurchaseOrder" class="search-label label label-info">F: {{$root.tagsParams.PurchaseOrder}}</span>
+	<span ng-show="$root.tagsParams.Company" class="search-label label label-primary">Company: {{$root.tagsParams.Company}}</span>
+
+</div>	

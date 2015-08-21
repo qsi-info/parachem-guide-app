@@ -40,7 +40,8 @@ span.search-label {
 
 
 #searchTable table {
-width: 100%;
+    width: 100%;
+    
 }
 
 #searchTable thead, #searchTable tbody, #searchTable tr, #searchTable td, #searchTable th { 
@@ -69,4 +70,16 @@ display: block;
 #searchTable tbody td, #searchTable thead th {
     width: 8%;
     float: left;
+}
+
+
+
+label {
+    font-size: 12px;
+}
+
+
+
+body {
+    font-family: "Source Sans Pro",sans-serif !important;
 }

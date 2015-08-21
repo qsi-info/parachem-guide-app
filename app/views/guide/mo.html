@@ -1,0 +1,71 @@
+<table class="table" id="searchTable">
+	<caption>
+		Liste des dépenses de main d'oeuvre
+	  <!-- <input type="text" class="form-control" autofocus placeholder="Effectuez un filtre sur votre recherce" ng-model="search"> -->
+		<!-- Nombre de résultats: <strong>{{items.length}}</strong> -->
+	</caption>
+	<thead>
+		<tr>
+			<th style="width: 17%;">
+				<a href="javascript:;"  ng-click="sortType = 'AccountingCode'; sortReverse = !sortReverse">
+					Code
+					<span ng-show="sortType == 'AccountingCode' && !sortReverse" class="fa fa-caret-down"></span>
+					<span ng-show="sortType == 'AccountingCode' && sortReverse" class="fa fa-caret-up"></span>
+				</a>
+			</th>
+			<th style="width: 17%;">
+				<a href="javascript:;"  ng-click="sortType = 'Project'; sortReverse = !sortReverse">
+					Projet
+					<span ng-show="sortType == 'Project' && !sortReverse" class="fa fa-caret-down"></span>
+					<span ng-show="sortType == 'Project' && sortReverse" class="fa fa-caret-up"></span>
+				</a>
+			</th>
+			<th style="width: 16%;">
+				<a href="javascript:;"  ng-click="sortType = 'WorkOrder'; sortReverse = !sortReverse">
+					BT
+					<span ng-show="sortType == 'WorkOrder' && !sortReverse" class="fa fa-caret-down"></span>
+					<span ng-show="sortType == 'WorkOrder' && sortReverse" class="fa fa-caret-up"></span>
+				</a>
+			</th>
+			<th style="width: 12%;">
+				<a href="javascript:;"  ng-click="sortType = 'DateTime'; sortReverse = !sortReverse">
+					Date
+					<span ng-show="sortType == 'DateTime' && !sortReverse" class="fa fa-caret-down"></span>
+					<span ng-show="sortType == 'DateTime' && sortReverse" class="fa fa-caret-up"></span>
+				</a>
+			</th>
+			<th style="width: 10%;">
+				<a href="javascript:;"  ng-click="sortType = 'NbHour'; sortReverse = !sortReverse">
+					Nb heures
+					<span ng-show="sortType == 'NbHour' && !sortReverse" class="fa fa-caret-down"></span>
+					<span ng-show="sortType == 'NbHour' && sortReverse" class="fa fa-caret-up"></span>
+				</a>
+			</th>
+			<th style="width: 10%;">
+				<a href="javascript:;" ng-click="sortType = 'Rate'; sortReverse = !sortReverse">
+					Taux
+					<span ng-show="sortType == 'Rate' && !sortReverse" class="fa fa-caret-down"></span>
+					<span ng-show="sortType == 'Rate' && sortReverse" class="fa fa-caret-up"></span>
+				</a>
+			</th>
+			<th style="width: 14%;">
+				<a href="javascript:;" ng-click="sortType = 'Name'; sortReverse = !sortReverse">
+					Name
+					<span ng-show="sortType == 'Name' && !sortReverse" class="fa fa-caret-down"></span>
+					<span ng-show="sortType == 'Name' && sortReverse" class="fa fa-caret-up"></span>
+				</a>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="r in items | orderBy:sortType:sortReverse" >
+			<td style="width: 17%;"><a ng-click="params.AccountingCode = r.AccountingCode; search();"><span style="white-space: nowrap;">{{r.AccountingCode}}</span></a></td>
+			<td style="width: 17%;"><a ng-click="params.Project = r.Project; search();">{{r.Project}}</a></td>
+			<td style="width: 16%;"><a ng-click="params.WorkOrder = r.WorkOrder; search();">{{r.WorkOrder}}</a></td>
+			<td style="width: 12%;">{{r.DateTime | date}}</td>
+			<td style="width: 10%;">{{r.NbHour}}</td>
+			<td style="width: 10%;">{{r.Rate}}</td>
+			<td style="width: 17%;">{{ r.FirstName.trim() }}&nbsp;{{ r.LastName.trim() }}</td>
+		</tr>
+	</tbody>
+</table>

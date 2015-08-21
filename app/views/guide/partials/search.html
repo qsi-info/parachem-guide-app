@@ -1,0 +1,94 @@
+<form ng-submit="searchRequest()" ng-controller="SearchCtrl">
+
+  <div class="form-group">
+
+  	<div class="form-group">
+  		<label>Code comptable</label>
+  		<div class="input-group">
+  		  <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Entrez un numéro de code" 
+          ng-model="$root.params.AccountingCode"/>
+  		  <span class="input-group-btn">
+  		  	<a class="btn btn-default" ng-click="resetParam('AccountingCode');" style="height: 30px"><i class="fa fa-times"></i></a>
+  		  </span>
+  		</div>
+  	</div>
+
+  	<div class="form-group">
+  		<label>Projet</label>
+  		<div class="input-group">
+  			<input 
+          type="text" 
+          class="form-control" 
+          placeholder="Entrez un numéro de projet" 
+          ng-model="$root.params.Project"/>
+  		  <span class="input-group-btn">
+  		  	<a class="btn btn-default" ng-click="resetParam('Project');" style="height: 30px"><i class="fa fa-times"></i></a>
+  		  </span>
+  		</div>
+  	</div>
+
+  	<div class="form-group">
+  		<label>Bon de Travail (BT)</label>
+  		<div class="input-group">
+  			<input 
+          type="text" 
+          class="form-control" 
+          placeholder="Entrez un numéro de bon" 
+          ng-model="$root.params.WorkOrder"/>
+  		  <span class="input-group-btn">
+  		  	<a class="btn btn-default" ng-click="resetParam('WorkOrder');" style="height: 30px"><i class="fa fa-times"></i></a>
+  		  </span>
+  		</div>
+  	</div>
+
+  	<div class="form-group">
+  		<label>Réquisition (R/S)</label>
+  		<div class="input-group">
+  			<input 
+          type="text" 
+          class="form-control" 
+          placeholder="Entrez un numéro de réquisition" 
+          ng-model="$root.params.Requisition"/>
+  		  <span class="input-group-btn">
+  		  	<a class="btn btn-default" ng-click="resetParam('Requisition');" style="height: 30px"><i class="fa fa-times"></i></a>
+  		  </span>
+  		</div>
+  	</div>
+
+  	<div class="form-group">
+  		<label>PO (F)</label>
+  		<div class="input-group">
+  			<input 
+          type="text" 
+          class="form-control" 
+          placeholder="Entrez un numéro de PO" 
+          ng-model="$root.params.PurchaseOrder"/>
+  		  <span class="input-group-btn">
+  		  	<a class="btn btn-default" ng-click="resetParam('PurchaseOrder');" style="height: 30px"><i class="fa fa-times"></i></a>
+  		  </span>
+  		</div>
+  	</div>
+
+
+  	<div class="form-group">
+  		<label>Compagnie</label>
+  		<div class="input-group">
+  			<input 
+          type="text" 
+          class="form-control" 
+          placeholder="Entrez un nom de compagnie" 
+          ng-model="$root.params.Company"/>
+  		  <span class="input-group-btn">
+  		  	<a class="btn btn-default" ng-click="resetParam('Company');" style="height: 30px"><i class="fa fa-times"></i></a>
+  		  </span>
+  		</div>
+  	</div>
+
+  	<button class="btn btn-block btn-success" type="submit">Rechercher</button>
+  	<button class="btn btn-block btn-warning" ng-click="resetParams()" type="reset">Recommencer</button>
+  
+  </div>
+</form>

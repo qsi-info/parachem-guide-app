@@ -23,14 +23,31 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
 
-    <div ng-view="" class="" style="padding: 30px;"></div>
+<!--     <a href="#/requisitions">requsitions</a>
+    <a href="#/parts">pièces magasin</a>
+ -->
+
+    <div class="row" style="padding-top: 20px;">
+      <div class="col-md-3">
+        <div class="row">
+          <div class="col-md-12" ng-include src="'views/guide/partials/search.html'"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" ng-include src="'views/guide/partials/totals.html'"></div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12" ng-include src="'views/guide/partials/tags.html'"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12" ng-view></div>
+        </div>
+      </div>
+    </div>
 
 
-<!--     <div id="cover">
-        <img src="images/loading_spinner.gif" class="loading-image"/>
-    </div> -->
 
 
 
@@ -57,6 +74,8 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/controllers.js"></script>
+    <script src="scripts/services.js"></script>
     <!-- endbuild -->
 
 </body>
