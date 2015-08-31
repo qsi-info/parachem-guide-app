@@ -2,6 +2,7 @@
 
 /*jshint unused:false*/
 /*jshint asi:true*/
+/* global $:true */
 
 
 
@@ -64,7 +65,7 @@ angular.module('AngularSharePointApp')
 		$location.path(path);			
 		window.setTimeout(function () {
 			$rootScope.$broadcast('search');
-		}, 100);
+		}, 500);
 	};
 
 	$scope.total = function () {

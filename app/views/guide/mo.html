@@ -61,7 +61,7 @@
 		<tr ng-repeat="r in items | orderBy:sortType:sortReverse" >
 			<td style="width: 17%;"><a ng-click="params.AccountingCode = r.AccountingCode; search();"><span style="white-space: nowrap;">{{r.AccountingCode}}</span></a></td>
 			<td style="width: 17%;"><a ng-click="params.Project = r.Project; search();">{{r.Project}}</a></td>
-			<td style="width: 16%;"><a ng-click="params.WorkOrder = r.WorkOrder; search();">{{r.WorkOrder}}</a></td>
+			<td style="width: 16%;"><a ng-click="params.WorkOrder = r.WorkOrder; search();" data-toggle="tooltip" data-placement="top" title="{{r.WorkOrderDescription}}">{{r.WorkOrder}}</a></td>
 			<td style="width: 12%;">{{r.DateTime | date}}</td>
 			<td style="width: 10%;">{{r.NbHour}}</td>
 			<td style="width: 10%;">{{r.Rate}}</td>
