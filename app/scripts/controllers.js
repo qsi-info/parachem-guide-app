@@ -19,6 +19,7 @@ angular.module('AngularSharePointApp')
 	$scope.partTotal = 0;
 	$scope.workHourTotal = 0;
 	$scope.otherTotal = 0;
+	$scope.nbHours = 0;
 
 
 	$scope.$on('total', function () {
@@ -39,6 +40,7 @@ angular.module('AngularSharePointApp')
 			.calculate($rootScope.params)
 			.success(function (response) {
 				$scope.workHourTotal = response.total;
+				$scope.nbHours = parseInt(response.hours);
 			})
 
 			GuideAPI.Other
@@ -51,14 +53,20 @@ angular.module('AngularSharePointApp')
 			$scope.partTotal = 0;
 			$scope.workHourTotal = 0;
 			$scope.otherTotal = 0;
+			$scope.nbHours = 0;
 		}
 	})
+
+	// $scope.$on('hours', function (event, data) {
+	// 	$scope.nbHours = data.nbHours;
+	// });
 
 	$scope.$on('clear', function () {
 		$scope.reqTotal = 0;
 		$scope.partTotal = 0;
 		$scope.workHourTotal = 0;
 		$scope.otherTotal = 0;
+		$scope.nbHours = 0;
 	});
 
 	$scope.sendSearch = function (path) {
@@ -108,9 +116,11 @@ angular.module('AngularSharePointApp')
 
 
 
-.controller('RequisitionCtrl', ['$rootScope', 'GuideAPI', '$scope', function ($rootScope, GuideAPI, $scope) {
+.controller('RequisitionCtrl', ['$rootScope', 'GuideAPI', '$scope', 'Utils', function ($rootScope, GuideAPI, $scope, Utils) {
 
 	$scope.items = [];
+
+	$rootScope.report = 'GuideRequisitions';
 
 	$scope.search = function () {
 		if (!$rootScope.params || $rootScope.params === 'undefined') {
@@ -155,6 +165,17 @@ angular.module('AngularSharePointApp')
 	}
 
 
+
+	$scope.print = function () {
+		var query = '';
+		for (var p in $rootScope.params) {
+			if ($rootScope.params.hasOwnProperty(p)) {
+				query += '&' + p + '=' + $rootScope.params[p];
+			}
+		}
+		Utils.popupWindow('http://paradevsrv02/ReportServer?/GuideReporter&rs:Command=Render&rc:Toolbar=true&Project=0150025&Requisition=26730', 1000, 600)
+	}
+
 	$scope.$on('search', $scope.search);
 	$scope.$on('clear', $scope.clear);
 
@@ -173,6 +194,8 @@ angular.module('AngularSharePointApp')
 .controller('PartCtrl', ['$rootScope', 'GuideAPI', '$scope', function ($rootScope, GuideAPI, $scope) {
 
 	$scope.items = [];
+
+	$rootScope.report = 'GuideParts';
 
 	$scope.search = function () {
 		if (!$rootScope.params || $rootScope.params === 'undefined') {
@@ -232,6 +255,8 @@ angular.module('AngularSharePointApp')
 .controller('OtherCtrl', ['$rootScope', 'GuideAPI', '$scope', function ($rootScope, GuideAPI, $scope) {
 
 	$scope.items = [];
+
+	$rootScope.report = 'GuideOthers';
 
 	$scope.search = function () {
 		if (!$rootScope.params || $rootScope.params === 'undefined') {
@@ -293,6 +318,8 @@ angular.module('AngularSharePointApp')
 
 	$scope.items = [];
 
+	$rootScope.report = 'GuideMO';
+
 	$scope.search = function () {
 		if (!$rootScope.params || $rootScope.params === 'undefined') {
 			$scope.clear();
@@ -323,6 +350,11 @@ angular.module('AngularSharePointApp')
 		.search($rootScope.params)
 		.success(function (founds) {
 			$scope.items = founds;
+			// var nbHours = 0;
+			// founds.forEach(function (f) {
+			// 	nbHours += f.NbHour;
+			// })
+			// $rootScope.$broadcast('hours', { nbHours: nbHours })
 		})
 		.error(function (err) {
 			console.log(err);

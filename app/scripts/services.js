@@ -10,8 +10,8 @@ angular.module('AngularSharePointApp')
 
 .factory('GuideAPI', ['$http', function ($http) {
 
-	// var server = 'http://localhost:1337';
-	var server = 'http://parasrv12.parachem.ca:8002';
+	var server = 'http://localhost:1337';
+	// var server = 'http://parasrv12.parachem.ca:8002';
 	var service = {};
 
 	function _search (path, params) {

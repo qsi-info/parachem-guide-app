@@ -58,6 +58,65 @@ angular.module('AngularSharePointApp', [
 }])
 
 
+.run(['Utils', '$rootScope', function (Utils, $rootScope) {
+
+
+
+	$rootScope.print = function () {
+		if (Object.keys($rootScope.params).length < 1) {
+			return window.alert('Vous devez effectuer une recherche avant d\'imprimer');
+		}
+		var query = '';
+		for (var p in $rootScope.params) {
+			if ($rootScope.params.hasOwnProperty(p)) {
+				query += '&' + p + '=' + $rootScope.params[p];
+			}
+		}
+		var url = 'http://paradevsrv02/ReportServer?/' + $rootScope.report + '&rs:Command=Render&rc:Toolbar=true' + query;
+
+		Utils.popupWindow(url, 1100, 800);
+	}
+
+}])
+
+
+.factory('Utils', [function () {
+
+  var service = {};
+
+  service.popupWindow = function (url, width, height, hasFeatures) {
+    var screenX = typeof window.screenX !== 'undefined' ? window.screenX : window.screenLeft;
+    var screenY = typeof window.screenY !== 'undefined' ? window.screenY : window.screenTop;
+    var outerWidth = typeof window.outerWidth !== 'undefined' ? window.outerWidth : document.body.clientWidth;
+    var outerHeight = typeof window.outerHeight !== 'undefined' ? window.outerHeight : (document.body.clientHeight-22);
+    var left = window.parseInt(screenX + ((outerWidth - width) / 2), 10);
+    var top = window.parseInt(screenY + ((outerHeight - height) / 2.5), 10);
+    var features = 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top;
+
+    if (hasFeatures === 'undefined') {
+    	hasFeatures = true;
+    }
+
+    if (hasFeatures) {
+	    features = features.concat(',scrollbars=no,toolbar=no,menubar=no,status=no,location=no,directories=no');
+    }
+
+    var newWindow = window.open(url, '', features);
+
+    if (typeof window.focus !== 'undefined') {
+      newWindow.focus();
+    }
+
+    return newWindow;
+  };
+
+  return service;
+
+
+}]); 
+
+
+
 
 /* jshint ignore:start */
 
